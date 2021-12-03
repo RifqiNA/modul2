@@ -650,7 +650,7 @@ Namun mereka diberi tahu lagi oleh programmer senior, pak Dzul. dimana ternyata 
 
    ![image](https://user-images.githubusercontent.com/93064971/144605094-2bb83de1-9815-4e05-bd64-94e04cdbeaca.png)
 
-   ```markdown
+         ```markdown
      ---
      - hosts: all
        become : yes
@@ -684,7 +684,7 @@ Namun mereka diberi tahu lagi oleh programmer senior, pak Dzul. dimana ternyata 
      © 2021 GitHub, Inc.
      Terms
      Priv
-     ```
+          ```
      
   * Install soall.yml
    
