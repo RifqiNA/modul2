@@ -246,7 +246,7 @@ Namun mereka diberi tahu lagi oleh programmer senior, pak Dzul. dimana ternyata 
                     - { regexp: '^(.*)DB_HOST(.*)$', line: 'DB_HOST=10.0.3.200' }
                     - { regexp: '^(.*)DB_DATABASE(.*)$', line: 'DB_DATABASE=landing' }
                     - { regexp: '^(.*)DB_USERNAME(.*)$', line: 'DB_USERNAME=admin' }
-                    - { regexp: '^(.*)DB_PASSWORD(.*)$', line: 'DB_PASSWORD= ' }
+                    - { regexp: '^(.*)DB_PASSWORD(.*)$', line: 'DB_PASSWORD= 1' }
                     - { regexp: '^(.*)APP_URL(.*)$', line: 'APP_URL=http://vm.local' }
                     - { regexp: '^(.*)APP_NAME=(.*)$', line: 'APP_NAME=landing' }
                  - name: Composer install ke landing
@@ -305,6 +305,52 @@ Namun mereka diberi tahu lagi oleh programmer senior, pak Dzul. dimana ternyata 
    * Create a config.yml . file
    
    ![image](https://user-images.githubusercontent.com/93064971/144449244-605e29db-8905-407c-99b1-085674a5882c.png)
+   
+   ```
+   ---
+- hosts: all
+  become : yes
+  vars:
+    domain: 'lxc_landing.dev'
+  tasks:
+   - name: stop apache2
+     service:
+      name: apache2
+      state: stopped
+      enabled: no
+   - name: Write {{ domain }} to /etc/hosts
+     lineinfile:
+      dest: /etc/hosts
+      regexp: '.*{{ domain }}$'
+      line: "127.0.0.1 {{ domain }}"
+      state: present
+   - name: ensure nginx is at the latest version
+     apt: name=nginx state=latest
+   - name: start nginx
+     service:
+      name: nginx
+      state: started
+   - name: copy the nginx config file 
+     copy:
+      src: ~/ansible/laravel/lxc_landing.dev
+      dest: /etc/nginx/sites-available/lxc_landing.dev
+   - name: Symlink lxc_landing.dev
+     command: ln -sfn /etc/nginx/sites-available/lxc_landing.dev /etc/nginx/sites-enabled/lxc_landing.dev
+     args:
+      warn: false
+   - name: restart nginx
+     service:
+      name: nginx
+      state: restarted
+   - name: restart php7
+     service:
+      name: php7.4-fpm
+      state: restarted
+   - name: curl web
+     command: curl -i http://lxc_landing.dev
+     args:
+      warn: false
+```
 
    * Install config.yml
    
@@ -468,7 +514,7 @@ Namun mereka diberi tahu lagi oleh programmer senior, pak Dzul. dimana ternyata 
           define( 'DB_USER', 'admin' );
 
           /** MySQL database password */
-          define( 'DB_PASSWORD', 'SysAdminSas0102' );
+          define( 'DB_PASSWORD', '1' );
 
           /** MySQL hostname */
           define( 'DB_HOST', '10.0.3.200:3306' );
