@@ -636,4 +636,58 @@ Namun mereka diberi tahu lagi oleh programmer senior, pak Dzul. dimana ternyata 
    
    <hr>
    
+   ## Soal Tambahan
+   
+   * First, change configuration lxc_landing.dev
+   
+   ![image](https://user-images.githubusercontent.com/93064971/144604820-40a22204-3d22-48bd-9c8a-0fb79cfcad4a.png)
+
+   ![image](https://user-images.githubusercontent.com/93064971/144604591-1c2e9334-70c8-4381-9379-0fcd342b3232.png)
+
+   * Make ansible soal2
+   
+   ![image](https://user-images.githubusercontent.com/93064971/144605028-b8989dbc-67f3-4eee-a3ab-41856cd35fc2.png)
+
+   ![image](https://user-images.githubusercontent.com/93064971/144605094-2bb83de1-9815-4e05-bd64-94e04cdbeaca.png)
+
+   ```markdown
+     ---
+     - hosts: all
+       become : yes
+       tasks:
+        - name: mengganti php sock
+          lineinfile:
+           path: /etc/php/7.4/fpm/pool.d/www.conf
+           regexp: '^(.*)listen =(.*)$'
+           line: 'listen = 127.0.0.1:9001'
+           backrefs: yes
+        - name: copy the nginx config file 
+          copy:
+           src: ~/ansible/laravel/lxc_landing.dev
+           dest: /etc/nginx/sites-available/lxc_landing.dev
+        - name: Symlink lxc_landing.dev
+          command: ln -sfn /etc/nginx/sites-available/lxc_landing.dev /etc/nginx/sites-enabled/lxc_landing.dev
+          args:
+           warn: false
+        - name: restart nginx
+          service:
+           name: nginx
+           state: restarted
+        - name: restart php7
+          service:
+           name: php7.4-fpm
+           state: restarted
+        - name: curl web
+          command: curl -i http://lxc_landing.dev
+          args:
+           warn: false
+     © 2021 GitHub, Inc.
+     Terms
+     Priv
+     ```
+     
+   * Install soall.yml
+   
+   ![image](https://user-images.githubusercontent.com/93064971/144605420-68b4cba8-24d1-4d09-a5aa-ed6d2e282511.png)
+
    
