@@ -690,4 +690,59 @@ Namun mereka diberi tahu lagi oleh programmer senior, pak Dzul. dimana ternyata 
    
    ![image](https://user-images.githubusercontent.com/93064971/144605420-68b4cba8-24d1-4d09-a5aa-ed6d2e282511.png)
 
+   * Check vm.local
    
+   ![laravel1](https://user-images.githubusercontent.com/93064971/144606863-721b6f5e-f254-4875-a724-81fb1f9b846b.png)
+
+   * In the first step, do the same as the first step in laravel. Namely change the configuration file to wordpress.conf
+
+   ![image](https://user-images.githubusercontent.com/93064971/144607687-312713af-3931-46b1-90af-e5b44477fbd7.png)
+
+   ![image](https://user-images.githubusercontent.com/93064971/144607571-d84e44e2-4bab-4c84-8417-55215b4a8b3b.png)
+
+   * Make ansible soal2
+
+   ![image](https://user-images.githubusercontent.com/93064971/144607985-3034892c-5c40-4447-84f6-b9fe6d44dacc.png)
+
+   ```
+---
+- hosts: all
+  become : yes
+  tasks:
+   - name: mengganti php sock
+     lineinfile:
+      path: /etc/php/7.4/fpm/pool.d/www.conf
+      regexp: '^(.*)listen =(.*)$'
+      line: 'listen = 127.0.0.1:9001'
+      backrefs: yes
+   - name: copy the nginx config file 
+     copy:
+      src: ~/ansible/wordpress/wordpress.conf
+      dest: /etc/nginx/sites-available/lxc_php7.dev
+   - name: Symlink lxc_php7.dev
+     command: ln -sfn /etc/nginx/sites-available/lxc_php7.dev /etc/nginx/sites-enabled/lxc_php7.dev
+     args:
+      warn: false
+   - name: restart nginx
+     service:
+      name: nginx
+      state: restarted
+   - name: restart php7
+     service:
+      name: php7.4-fpm
+      state: restarted
+   - name: curl web
+     command: curl -i http://lxc_php7.dev
+     args:
+      warn: false
+```
+
+   * Install soall.yml
+   
+   ![image](https://user-images.githubusercontent.com/93064971/144608303-6e37cc90-2d44-428f-8fa2-193b60b6211c.png)
+
+   * Open vm.local/blog
+
+   ![image](https://user-images.githubusercontent.com/93064971/144608442-12924e52-81d7-4a87-a6d8-c2469a046b59.png)
+
+<hr>
