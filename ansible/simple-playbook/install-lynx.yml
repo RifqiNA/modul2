@@ -1,0 +1,7 @@
+- hosts: php5
+  tasks:
+    - name: Install lynx
+      become: yes #untuk menjadi superuser
+      apt: name={{ item }} state=latest update_cache=true
+      with_items:
+        - lynx

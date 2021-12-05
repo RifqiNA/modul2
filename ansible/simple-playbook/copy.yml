@@ -1,0 +1,6 @@
+- hosts: php5
+  tasks:
+    - name: Buat folder /tmp/dari-host 
+      command: mkdir -p /tmp/dari-host
+    - name: Copy file install-lynx.yml
+      copy: src=./install-lynx.yml dest=/tmp/dari-host/install-lynx.yml
