@@ -681,9 +681,6 @@ Namun mereka diberi tahu lagi oleh programmer senior, pak Dzul. dimana ternyata 
           command: curl -i http://lxc_landing.dev
           args:
            warn: false
-     © 2021 GitHub, Inc.
-     Terms
-     Priv
           ```
      
   * Install soall.yml
