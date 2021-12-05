@@ -642,15 +642,15 @@ Namun mereka diberi tahu lagi oleh programmer senior, pak Dzul. dimana ternyata 
    
    ![image](https://user-images.githubusercontent.com/93064971/144604820-40a22204-3d22-48bd-9c8a-0fb79cfcad4a.png)
 
-   ![image](https://user-images.githubusercontent.com/93064971/144604591-1c2e9334-70c8-4381-9379-0fcd342b3232.png)
+   ![image](https://user-images.githubusercontent.com/93064971/144744684-d57ee816-ff8a-480a-9d5e-78177b182e9d.png)
 
    * Make ansible soal2
    
    ![image](https://user-images.githubusercontent.com/93064971/144605028-b8989dbc-67f3-4eee-a3ab-41856cd35fc2.png)
 
-   ![image](https://user-images.githubusercontent.com/93064971/144605094-2bb83de1-9815-4e05-bd64-94e04cdbeaca.png)
+   ![image](https://user-images.githubusercontent.com/93064971/144744671-b2199533-7961-41d1-b1dd-34fb312a10e3.png)
 
-         ```markdown
+        
      ---
      - hosts: all
        become : yes
@@ -681,27 +681,29 @@ Namun mereka diberi tahu lagi oleh programmer senior, pak Dzul. dimana ternyata 
           command: curl -i http://lxc_landing.dev
           args:
            warn: false
-          ```
+          
      
   * Install soall.yml
    
-  ![image](https://user-images.githubusercontent.com/93064971/144605420-68b4cba8-24d1-4d09-a5aa-ed6d2e282511.png)
+  ![image](https://user-images.githubusercontent.com/93064971/144744645-fd20a043-7e52-4020-af40-af6dba0c4781.png)
 
   * Check vm.local
    
-  ![laravel1](https://user-images.githubusercontent.com/93064971/144606863-721b6f5e-f254-4875-a724-81fb1f9b846b.png)
+  ![image](https://user-images.githubusercontent.com/93064971/144744618-b52f5d16-c87c-4407-9391-75199951e873.png)
 
   * In the first step, do the same as the first step in laravel. Namely change the configuration file to wordpress.conf
 
   ![image](https://user-images.githubusercontent.com/93064971/144607687-312713af-3931-46b1-90af-e5b44477fbd7.png)
 
-  ![image](https://user-images.githubusercontent.com/93064971/144607571-d84e44e2-4bab-4c84-8417-55215b4a8b3b.png)
+  ![image](https://user-images.githubusercontent.com/93064971/144744728-d32b46e4-64e5-4871-b5bd-3ef412762f04.png)
 
-  * Make ansible soal2
+  * Make ansible soall.yml
 
-  ![image](https://user-images.githubusercontent.com/93064971/144607985-3034892c-5c40-4447-84f6-b9fe6d44dacc.png)
+  ![image](https://user-images.githubusercontent.com/93064971/144744758-fbb36ff9-a36b-4d3c-936f-929f29ed1136.png)
 
-                        ```
+  ![image](https://user-images.githubusercontent.com/93064971/144744774-a9fbda06-6962-4ef6-9937-44eb440136a3.png)
+
+                        
                      ---
                      - hosts: all
                        become : yes
@@ -732,14 +734,14 @@ Namun mereka diberi tahu lagi oleh programmer senior, pak Dzul. dimana ternyata 
                           command: curl -i http://lxc_php7.dev
                           args:
                            warn: false
-                     ```
+                    
 
    * Install soall.yml
    
-   ![image](https://user-images.githubusercontent.com/93064971/144608303-6e37cc90-2d44-428f-8fa2-193b60b6211c.png)
+   ![image](https://user-images.githubusercontent.com/93064971/144744830-01b33b3f-a819-48ff-bdc1-c985c04cf15b.png)
 
    * Open vm.local/blog
 
-   ![image](https://user-images.githubusercontent.com/93064971/144608442-12924e52-81d7-4a87-a6d8-c2469a046b59.png)
+   ![image](https://user-images.githubusercontent.com/93064971/144744846-b4ae7ba8-d982-4c91-ab46-b3f465f99a1c.png)
 
 <hr>
